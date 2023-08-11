@@ -6,6 +6,7 @@ import {
   Delete,
   Param,
   Body,
+  Query,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateProductDto } from './create-product.dto';
@@ -23,15 +24,18 @@ export class ProductsController {
   }
 
   @Get()
-  async getProducts() {
-    const products = getProducts();
+  async getProducts(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ): Promise<{ products: Product[] }> {
+    const products = await this.productsService.getProducts(page, limit);
 
-    return products;
+    return { products };
   }
 
   @Get(':id')
-  async getProductById(@Param('id') id:string) {
-    const product = getProductById(id);
+  async getProductById(@Param('id') id: string) {
+    const product = await this.productsService.getProductById(id);
     if (!product) {
       throw new NotFoundException('Product not found');
     }
@@ -41,16 +45,24 @@ export class ProductsController {
   @Put(':id')
   async updateProduct(
     @Param('id') id: string,
-    @Body() product: Partial<Product>,
-  ) {
-    const { title, description } = product;
-    updateProduct(id, title, description);
-    return { message: 'Product updated' };
+    @Body() createProductDto: CreateProductDto,
+  ): Promise<{ message: string; product: Product }> {
+    const product = await this.productsService.updateProduct(
+      id,
+      createProductDto,
+    );
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
+    return { message: 'Product updated', product };
   }
 
   @Delete(':id')
-  async deleteProduct(@Param('id') id: string) {
-    deleteProduct(id);
+  async deleteProduct(@Param('id') id: string): Promise<{ message: string }> {
+    const deleted = await this.productsService.deleteProduct(id);
+    if (!deleted) {
+      throw new NotFoundException('Product not found');
+    }
 
     return { message: 'Product deleted' };
   }
