@@ -5,7 +5,7 @@ export class UsersController {
   @Post()
   async addUser(@Body() user: User) {
     if(user.role === 'Admin'){
-        addUser(user);
+      addUser(user);
     }
 
     return { message: 'User Added'}
