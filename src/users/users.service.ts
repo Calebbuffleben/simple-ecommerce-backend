@@ -1,4 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
+import { isValidCpf } from 'src/helpers/validate-cpf.helper';
 
 export class UsersService {
   async createUser(createUserDTO: CreateUserDTO) {
