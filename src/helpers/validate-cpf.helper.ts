@@ -5,39 +5,39 @@ export function isValidCpf(cpf) {
   }
 
   const numeros = cpf.match(/\d/g).map(Number);
-  const soma = numeros.reduce((acc, cur, idx) => {
+  let soma = numeros.reduce((acc, cur, idx) => {
     if (idx < 9) {
       return acc + cur * (10 - idx);
     }
-      return acc;
-    }, 0);
+    return acc;
+  }, 0);
 
-    var resto = (soma * 10) % 11;
+  let resto = (soma * 10) % 11;
 
-    if (resto === 10 || resto === 11) {
-      resto = 0;
+  if (resto === 10 || resto === 11) {
+    resto = 0;
+  }
+
+  if (resto !== numeros[9]) {
+    return false;
+  }
+
+  soma = numeros.reduce((acc, cur, idx) => {
+    if (idx < 10) {
+      return acc + cur * (11 - idx);
     }
+    return acc;
+  }, 0);
 
-    if (resto !== numeros[9]) {
-      return false;
-    }
+  resto = (soma * 10) % 11;
 
-    soma = numeros.reduce((acc, cur, idx) => {
-      if (idx < 10) {
-        return acc + cur * (11 - idx);
-      }
-      return acc;
-    }, 0);
+  if (resto === 10 || resto === 11) {
+    resto = 0;
+  }
 
-    resto = (soma * 10) % 11;
+  if (resto !== numeros[10]) {
+    return false;
+  }
 
-    if (resto === 10 || resto === 11) {
-      resto = 0;
-    }
-
-    if (resto !== numeros[10]) {
-      return false;
-    }
-
-    return true;
+  return true;
 }
