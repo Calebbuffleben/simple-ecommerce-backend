@@ -1,7 +1,13 @@
 import { BadRequestException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { isValidCpf } from 'src/helpers/validate-cpf.helper';
 
 export class UsersService {
+  constructor(
+    @InjectModel('Product') private readonly productModel: Model<User>,
+  ) {}
+
   async createUser(createUserDTO: CreateUserDTO) {
     if (
       this.findUserByEmail(createUserDTO.email) &&
