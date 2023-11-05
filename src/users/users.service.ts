@@ -18,7 +18,9 @@ export class UsersService {
     }
 
     const user = new this.userModel(createUserDTO);
+
     await user.save();
+
     return user;
   }
 
