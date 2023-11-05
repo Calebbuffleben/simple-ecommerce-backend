@@ -14,7 +14,7 @@ export class UsersService {
       this.findUserByEmail(createUserDTO.email) &&
       !isValidCpf(createUserDTO.cpf)
     ) {
-      throw new BadRequestException('The users arleady exists');
+      throw new BadRequestException('The users dont could be created');
     }
 
     const user = new this.userModel(createUserDTO);
