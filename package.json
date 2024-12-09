@@ -1,0 +1,26 @@
+{
+  "name": "simple-ecommerce-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Calebbuffleben/simple-ecommerce-backend.git"
+  },
+  "author": "Caleb Buffleben",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Calebbuffleben/simple-ecommerce-backend/issues"
+  },
+  "homepage": "https://github.com/Calebbuffleben/simple-ecommerce-backend#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2"
+  }
+}
