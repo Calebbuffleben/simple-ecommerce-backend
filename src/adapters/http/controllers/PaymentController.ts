@@ -1,5 +1,5 @@
-import { PaymentProcessor } from '../../application/usecases/PaymentProcessor';
-import { PaymentMethodFactory } from '../factories/PaymentMethodFactory';
+import { PaymentProcessor } from '../../../application/usecases/PaymentProcessor';
+import { PaymentMethodFactory } from '../../../application/factories/PaymentMethodFactory';
 
 export class PaymentController {
     async handlePayment(req: any, res: any): Promise<void> {
