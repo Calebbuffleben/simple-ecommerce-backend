@@ -1,9 +1,13 @@
-import { PaymentMethod } from "../interfaces/PaymentMethod";
+import { IPaymentMethod } from "../interfaces/IPaymentMethod";
 
 export class PaymentProcessor {
-    constructor(private paymentMethod: PaymentMethod) {}
+    private paymentMethod: IPaymentMethod;
 
-    async processPayment(amount: number): Promise<void>{
-        await this.paymentMethod.processPayment(amount);
+    constructor(paymentMethod: IPaymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    async execute(data: any) {
+        await this.paymentMethod.processPayment(data);
     }
 }
