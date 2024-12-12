@@ -1,16 +1,17 @@
-import { PaymentMethod } from "../../application/interfaces/PaymentMethod";
-import { CreditCardPayment } from "../../application/usecases/paymentMethods/CreditCardPayment";
-import { PayPalPayment } from "../../application/usecases/paymentMethods/PayPalPayment";
+import { IPaymentMethod } from "../interfaces/IPaymentMethod";
+import { CreditCardPayment } from "../../domain/entities/paymentMethods/CreditCardPayment";
+import { PayPalPayment } from "../../domain/entities/paymentMethods/PayPalPayment";
+import { PaymentMethodTypes } from "../types/PaymentMethod";
 
 export class PaymentMethodFactory {
-    static create(method: string): PaymentMethod {
+    static createPaymentMethod(method: string): IPaymentMethod {
         switch (method) {
-            case 'credit-card':
+            case PaymentMethodTypes.CREDIT_CARD:
                 return new CreditCardPayment();
-            case 'pay-pal':
+            case PaymentMethodTypes.PAYPAL:
                 return new PayPalPayment();
             default:
-                return new PayPalPayment();
+                throw new Error(`Payment method ${method} is not supported.`);
         }
     }
 }

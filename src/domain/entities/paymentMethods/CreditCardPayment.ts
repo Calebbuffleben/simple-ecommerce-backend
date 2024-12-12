@@ -1,7 +1,9 @@
-import { PaymentMethod } from "../../../application/interfaces/PaymentMethod";
+import { IPaymentMethod } from "../../../application/interfaces/IPaymentMethod";
 
-export class CreditCardPayment implements PaymentMethod {
-    async processPayment(amount: number): Promise<void> {
-        console.log(`Processing credit card payment of $${amount}`);
+export class CreditCardPayment implements IPaymentMethod {
+    async processPayment(data: any){
+        console.log(`Processing credit card payment of $${data}`);
+
+        return { status: 'success', method: 'credit_card' }
     }
 }

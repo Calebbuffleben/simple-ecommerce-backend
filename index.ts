@@ -1,1 +1,3 @@
-console.log('Hello, Node.js!');
+import './src/infrastructure/server';
+
+console.log("Application started...");
