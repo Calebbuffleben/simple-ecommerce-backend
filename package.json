@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Calebbuffleben/simple-ecommerce-backend#readme",
   "dependencies": {
     "@paypal/paypal-server-sdk": "^0.6.0",
+    "axios": "^1.7.9",
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
