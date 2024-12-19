@@ -26,13 +26,13 @@ async function get_access_token() {
     const data = 'grant_type=client_credentials'
     
     try {
-        const response = await axios.post(`${endpoint_url}/v1/oauth2/token`, data, {
+        const { access_token } = await axios.post(`${endpoint_url}/v1/oauth2/token`, data, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': `Basic ${Buffer.from(auth).toString('base64')}`
             }
         });
-        return response.data.access_token;
+        return access_token;
     } catch (error) {
         console.error('Error fetching access token:', error);
         throw error;
