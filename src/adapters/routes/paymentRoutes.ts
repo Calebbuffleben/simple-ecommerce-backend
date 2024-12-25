@@ -5,7 +5,7 @@ const router = express.Router();
 const paymentController  = new PaymentController();
 
 router.post('/pay', async (req, res) => {
-    await paymentController.handlePayment(req, res);
+    await paymentController.processPayment(req, res);
 });
 
 export default router;
