@@ -2,6 +2,8 @@ import express from 'express';
 import routes from '../adapters/http/routes';
 import axios from 'axios';
 
+require('dotenv').config();
+
 const app = express();
 app.use(express.json());
 app.use(routes);
@@ -34,7 +36,7 @@ async function get_access_token() {
             auth: {
                 username: paypal_client_id,
                 password: paypal_client_secret
-            }
+            } as any
             
         });
         return response.access_token;
